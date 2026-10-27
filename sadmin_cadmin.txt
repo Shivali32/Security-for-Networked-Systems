@@ -1,0 +1,13 @@
+virsh list --all
+virsh start Client-ubuntu-20.04
+virsh start Server-ubuntu-20.04
+virsh shutdown Client-ubuntu-20.04
+virsh shutdown Server-ubuntu-20.04
+
+ssh sadmin@192.168.122.183
+ssh cadmin@192.168.122.188
+
+
+scp -r /etc/snort/snort.conf exouser@10.1.245.173:/home/exouser/
+scp -r exouser@10.1.245.173:/home/exouser/bin /root
+scp exouser@149.165.150.51:/home/exouser/shimate.rules D:/SNS/Lab8/

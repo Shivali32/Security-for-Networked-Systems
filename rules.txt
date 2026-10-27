@@ -1,0 +1,17 @@
+alert tcp 192.168.122.188 any -> 192.168.122.183 1000:1010 (flags:S; msg:"Port Scan Detected"; sid:107;)
+
+
+alert tcp any any -> [157.240.254.35] 80 (msg:"HTTP Request to Facebook"; sid:103;)
+alert tcp any any -> [157.240.254.35] 443 (msg:"HTTPS Request to Facebook"; sid:104;)
+alert tcp any any -> [57.144.204.1] 80 (msg:"HTTP Request to Facebook"; sid:105;)
+alert tcp any any -> [57.144.204.1] 443 (msg:"HTTPS Request to Facebook"; sid:106;)
+
+
+alert tcp 192.168.122.188 any -> 192.168.122.183 22 (msg:"SSH Attempt from Client"; sid:101;)
+alert tcp 192.168.122.188 any -> 192.168.122.183 80 (msg:"HTTP Access from Client"; sid:102;)
+
+alert tcp 1.1.1.1 1024 -> 2.2.2.2 2048 (msg:"Example Alert"; sid:1;)
+alert tcp 1.1.1.1 1024 -> 2.2.2.2 2048 (flags: F; msg:"Syn Alert"; sid:3;)
+
+
+

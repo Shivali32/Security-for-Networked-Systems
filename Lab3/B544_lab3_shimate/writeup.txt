@@ -1,0 +1,13 @@
+------------ 2.2 --------------
+
+In ECB mode, the encrypted bitmap still exposes the IU logo’s structure. Repeating pixel blocks in the original image encrypt to identical ciphertext blocks, so edges and large uniform regions reappear as visible stripes and outlines. Even though exact colors are lost, the logo’s shape can be inferred from the repeated block patterns—showing that ECB leaks spatial information.
+
+In CBC mode, the encrypted bitmap looks like random noise with no recognizable shapes. Because each block is XORed with the previous ciphertext block and seeded by an IV, similar plaintext blocks encrypt differently, destroying visible repetition. Conclusion: Useful information about the original picture can be derived from the ECB image, but not from the CBC image; CBC effectively hides structure and is the safer choice for images.
+
+------------ 2.3 --------------
+
+(a)
+Using a 128-byte message, one bit of the 30th ciphertext byte was flipped and the files were decrypted. In ECB, the damage was confined to the single 16-byte block that contained the corrupted byte; the rest of the plaintext blocks were recovered exactly. In CBC, the corrupted block decrypted to garbage and the same bit position in the next block flipped, while all later blocks were correct—matching CBC’s one-block-forward error propagation. In OFB, only the single byte at that position was wrong and every other byte matched the original, consistent with OFB’s keystream behavior where corruption affects only the aligned byte.
+
+(b)
+No. ECB, CBC, and OFB provide confidentiality only, not integrity or authenticity. An attacker can modify ciphertext and predictably change the decrypted plaintext (ECB/CBC by block, OFB byte-wise), and the receiver would not be alerted. A separate Message Authentication Code (eg. HMAC) or an AEAD mode such as AES-GCM/CCM/Poly1305 is required to detect tampering.
